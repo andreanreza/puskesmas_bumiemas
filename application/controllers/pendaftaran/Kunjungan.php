@@ -76,4 +76,16 @@ class Kunjungan extends CI_Controller
         $this->load->view('pendaftaran/detail-kunjungan', $data);
         $this->load->view('templates/footer');
     }
+
+    public function hapusKunjungan($id)
+    {
+
+        $this->db->where('id', $id);
+        $this->db->delete('tbl_kunjungan');
+
+        $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+        Berhasil menghapus data pasien
+      </div>');
+        redirect('pendaftaran/kunjungan');
+    }
 }
