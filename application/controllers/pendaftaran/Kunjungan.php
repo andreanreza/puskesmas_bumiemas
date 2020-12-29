@@ -35,15 +35,11 @@ class Kunjungan extends CI_Controller
             'user'      => $this->Model_auth->userData(),
             'poli'      => $this->db->get('tbl_poli')->result_array(),
             'pasien'    => $this->Model_pendaftaran->viewPasien(),
-
         ];
 
         $this->form_validation->set_rules('keluhan', 'keluhan pasien', 'required|trim', [
             'required' => 'keluhan pasien Harus diisi !'
         ]);
-        // $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', [
-        //     'required' => 'Alamat Harus diisi !'
-        // ]);
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
