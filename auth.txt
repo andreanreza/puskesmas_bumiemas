@@ -1,0 +1,7 @@
+login admin
+email admin@gmail.com 
+key   1234
+
+login pendaftaran
+email pendaftaran@gmail.com
+key   12345
