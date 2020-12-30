@@ -84,4 +84,42 @@ class Kunjungan extends CI_Controller
       </div>');
         redirect('pendaftaran/kunjungan');
     }
+
+    public function tambahKunjunganrekam($id)
+    {
+
+        $data = [
+            'judul'         => 'tambah kunjungan rekam',
+            'user'          => $this->Model_auth->userData(),
+            'kunjungan'     => $this->Model_pendaftaran->viewKunjungan(),
+            'idKunjungan'   => $this->Model_pendaftaran->byIdkunjungan($id)
+        ];
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('pendaftaran/proses-kunjungan-to-rm', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function proses()
+    {
+        $data = [
+            'nama' => $this->input->post('nama'),
+            'no_rm'   => $this->input->post('no_rm'),
+            'alamat'   => $this->input->post('alamat'),
+            'jenis_kelamin'   => $this->input->post('jenis_kelamin'),
+            'keluhan'   => $this->input->post('keluhan'),
+            'id_obat'   => '',
+            'tgl_rekam'   => time(),
+            'poli'   => $this->input->post('poli')
+        ];
+
+        $this->db->insert('tbl_rekam', $data);
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+        Berhasil mengirim data ke poli tujuan
+      </div>');
+        redirect('pendaftaran/kunjungan');
+    }
 }

@@ -62,10 +62,10 @@ class Auth extends CI_Controller
                         redirect('pendaftaran/pendaftaran');
                         break;
                     case '3':
-                        redirect('poliumum');
+                        redirect('poli/poliumum');
                         break;
                     case '4':
-                        redirect('polikia');
+                        redirect('polikia/polikia');
                         break;
                     default:
                         $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">

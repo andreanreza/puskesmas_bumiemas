@@ -119,7 +119,5 @@ class Model_pendaftaran extends CI_Model
         $this->db->where('tbl_kunjungan.id', $id);
         $query = $this->db->get();
         return $query->row();
-
-        // return $this->db->get_where('tbl_kunjungan', ['id' => $id])->row();
     }
 }
