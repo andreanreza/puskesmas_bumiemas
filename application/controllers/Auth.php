@@ -62,7 +62,7 @@ class Auth extends CI_Controller
                         redirect('pendaftaran/pendaftaran');
                         break;
                     case '3':
-                        redirect('poli/poliumum');
+                        redirect('poliumum/poliumum');
                         break;
                     case '4':
                         redirect('polikia/polikia');

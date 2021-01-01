@@ -52,8 +52,15 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="poli" class="col-sm-2 col-form-label">Poli</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="poli" name="poli" value="<?= $idKunjungan->poli; ?>" readonly>
+                                        <div class="col-sm-6"><select name="id_poli" id="poli" class="form-control">
+                                                <?php foreach ($poli as $p) : ?>
+                                                    <?php if ($p->id == $idKunjungan->id_poli) : ?>
+                                                        <option value="<?= $p->id; ?>" selected><?= $p->poli; ?></option>
+                                                    <?php else : ?>
+                                                        <option value="<?= $p->id; ?>"><?= $p->poli; ?></option>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Kirem</button>
@@ -61,14 +68,9 @@
                                 </form>
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>

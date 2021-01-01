@@ -92,7 +92,8 @@ class Kunjungan extends CI_Controller
             'judul'         => 'tambah kunjungan rekam',
             'user'          => $this->Model_auth->userData(),
             'kunjungan'     => $this->Model_pendaftaran->viewKunjungan(),
-            'idKunjungan'   => $this->Model_pendaftaran->byIdkunjungan($id)
+            'idKunjungan'   => $this->Model_pendaftaran->byIdkunjungan($id),
+            'poli'          => $this->db->get('tbl_poli')->result()
         ];
 
 
@@ -106,14 +107,14 @@ class Kunjungan extends CI_Controller
     public function proses()
     {
         $data = [
-            'nama' => $this->input->post('nama'),
-            'no_rm'   => $this->input->post('no_rm'),
-            'alamat'   => $this->input->post('alamat'),
+            'nama'            => $this->input->post('nama'),
+            'no_rm'           => $this->input->post('no_rm'),
+            'alamat'          => $this->input->post('alamat'),
             'jenis_kelamin'   => $this->input->post('jenis_kelamin'),
-            'keluhan'   => $this->input->post('keluhan'),
-            'id_obat'   => '',
-            'tgl_rekam'   => time(),
-            'poli'   => $this->input->post('poli')
+            'keluhan'         => $this->input->post('keluhan'),
+            'id_obat'         => '',
+            'tgl_rekam'       => time(),
+            'id_poli'         => $this->input->post('id_poli')
         ];
 
         $this->db->insert('tbl_rekam', $data);

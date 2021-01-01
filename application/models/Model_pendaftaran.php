@@ -112,6 +112,7 @@ class Model_pendaftaran extends CI_Model
     public function byIdkunjungan($id)
     {
 
+
         $this->db->select('tbl_kunjungan.*, tbl_pasien.nama, tbl_pasien.no_rm, tbl_pasien.alamat, tbl_pasien.jk, tbl_poli.poli');
         $this->db->from('tbl_kunjungan');
         $this->db->join('tbl_pasien', 'tbl_pasien.id = tbl_kunjungan.id_pasien');
