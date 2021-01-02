@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="basic-form">
-                            <form method="post" action="<?= base_url('poliumum/poliumum/rm_obat'); ?>">
+                            <form method="post" action="<?= base_url('poliumum/poliumum/rmobat'); ?>">
                                 <div class="form-group">
                                     <input type="hidden" name="id" value="<?= $rekmedId->id; ?>">
                                     <label for="nama">Nama pasien</label>

@@ -15,7 +15,8 @@ class PoliUmum extends CI_Controller
         $data = [
             'judul'     => 'Poli umum',
             'user'      => $this->Model_auth->userData(),
-            'rekmed'    => $this->Model_rekmed->viewPoliUmum()
+            'rekmed'    => $this->Model_rekmed->viewPoliUmum(),
+            'rmobat'    => $this->db->get('tbl_rm_obat')->result()
         ];
 
 
@@ -38,6 +39,7 @@ class PoliUmum extends CI_Controller
 
         ];
 
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar');
@@ -45,19 +47,37 @@ class PoliUmum extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function rm_obat()
+    public function rmObat()
     {
+        $idRm = $this->input->post('id');
+        $idObat = $this->input->post('id_obat');
 
-        $rm_id = $this->input->post('id');
-        $obat = $this->input->post('id_obat');
+        foreach ($idObat as $ob) {
 
-        foreach ($obat as $o) {
             $data = [
-                'id_rm' => $rm_id,
-                'id_obat' => $o
+                'id_rm' => $idRm,
+                'id_obat' => $ob
             ];
             $this->db->insert('tbl_rm_obat', $data);
         }
-        // endforeach;
+
+        // $data1 = [
+        //     'tgl_rekam' => time()
+        // ];
+        $this->db->set('tgl_rekam', time());
+        $this->db->where('id', $idRm);
+        $this->db->update('tbl_rekam');
+        redirect('poliumum/poliumum');
+    }
+
+    public function hapusrekmed($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tbl_rekam');
+
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+        Berhasil menghapus data 
+      </div>');
+        redirect('poliumum/poliumum');
     }
 }

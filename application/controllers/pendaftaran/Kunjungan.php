@@ -112,7 +112,6 @@ class Kunjungan extends CI_Controller
             'alamat'          => $this->input->post('alamat'),
             'jenis_kelamin'   => $this->input->post('jenis_kelamin'),
             'keluhan'         => $this->input->post('keluhan'),
-            'id_obat'         => '',
             'tgl_rekam'       => time(),
             'id_poli'         => $this->input->post('id_poli')
         ];

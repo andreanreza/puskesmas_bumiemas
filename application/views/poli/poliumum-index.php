@@ -17,7 +17,8 @@
                             <?= $this->session->flashdata('pesan'); ?>
                         </div>
 
-                        <!-- <a href="<?= base_url('pendaftaran/kunjungan/tambahkunjungan'); ?>" class="btn btn-primary ml-4">Tambah kunjungan pasien</a> -->
+
+
                         <div class="table-responsive ">
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
@@ -25,10 +26,11 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>No Rm</th>
-                                        <th>alamat</th>
+
                                         <th>Jenis Kelamin</th>
                                         <th>Keluhan</th>
                                         <th>tgl rekmed</th>
+                                        <th>obat</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -40,10 +42,26 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= $rm->nama; ?></td>
                                             <td><?= $rm->no_rm; ?></td>
+
                                             <td><?= $rm->jenis_kelamin; ?></td>
-                                            <td><?= $rm->alamat; ?></td>
                                             <td><?= $rm->keluhan; ?></td>
                                             <td><?= date('d F Y', $rm->tgl_rekam); ?></td>
+                                            <td>
+                                                <?php
+                                                $id_rm = $rm->id;
+                                                $this->db->select('tbl_rm_obat.*, tbl_rekam.*, tbl_obat.nama_obat');
+                                                $this->db->from('tbl_rm_obat');
+                                                $this->db->join('tbl_rekam', 'tbl_rm_obat.id_rm = tbl_rekam.id');
+                                                $this->db->join('tbl_obat', 'tbl_rm_obat.id_obat = tbl_obat.id');
+                                                $this->db->where('tbl_rm_obat.id_rm', $id_rm);
+                                                $query = $this->db->get()->result();
+
+
+                                                ?>
+                                                <?php foreach ($query as $ro) : ?>
+                                                    <?= $ro->nama_obat; ?><br>
+                                                <?php endforeach; ?>
+                                            </td>
                                             <td>
                                                 <a href="<?= base_url('poliumum/poliumum/detailrekmed/') . $rm->id; ?>" class="badge badge-secondary">Detail</a>
                                                 <a href="<?= base_url('poliumum/poliumum/editrekmed/') . $rm->id; ?>" class="badge badge-success">periksa</a>
