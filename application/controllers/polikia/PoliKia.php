@@ -77,4 +77,24 @@ class PoliKia extends CI_Controller
       </div>');
         redirect('polikia/polikia');
     }
+
+    public function cetakpdf($id)
+    {
+        $this->load->library('dompdf_gen');
+
+        $data['rekmed'] = $this->Model_rekmed->rmObatById($id);
+
+        $this->load->view('poli/cetak-laporan-id', $data);
+
+        $paper = 'A4';
+        $orientasi = 'lanscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper, $orientasi);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("laporan_rekam_medis.pdf", [
+            'attachment' => 0
+        ]);
+    }
 }

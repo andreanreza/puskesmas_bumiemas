@@ -26,7 +26,6 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>No Rm</th>
-
                                         <th>Jenis Kelamin</th>
                                         <th>Keluhan</th>
                                         <th>tgl rekmed</th>
@@ -56,14 +55,13 @@
                                                 $this->db->where('tbl_rm_obat.id_rm', $id_rm);
                                                 $query = $this->db->get()->result();
 
-
                                                 ?>
                                                 <?php foreach ($query as $ro) : ?>
                                                     <?= $ro->nama_obat; ?><br>
                                                 <?php endforeach; ?>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('poliumum/poliumum/detailrekmed/') . $rm->id; ?>" class="badge badge-secondary">Detail</a>
+                                                <a href="<?= base_url('poliumum/poliumum/cetakpdf/') . $rm->id; ?>" class="badge badge-secondary">Cetak</a>
                                                 <a href="<?= base_url('poliumum/poliumum/editrekmed/') . $rm->id; ?>" class="badge badge-success">periksa</a>
                                                 <a href="<?= base_url('poliumum/poliumum/hapusrekmed/') . $rm->id; ?>" class="badge badge-danger" onclick="return confirm('yakin ?'); ">Hapus</a>
                                             </td>

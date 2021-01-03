@@ -63,7 +63,7 @@
                                                 <?php endforeach; ?>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('poliumum/poliumum/detailrekmed/') . $rm->id; ?>" class="badge badge-secondary">Detail</a>
+                                                <a href="<?= base_url('poliumum/poliumum/cetakpdf/') . $rm->id; ?>" class="badge badge-secondary">cetak</a>
                                                 <a href="<?= base_url('polikia/polikia/editrekmed/') . $rm->id; ?>" class="badge badge-success">periksa</a>
                                                 <a href="<?= base_url('polikia/polikia/hapusrekmed/') . $rm->id; ?>" class="badge badge-danger" onclick="return confirm('yakin ?'); ">Hapus</a>
                                             </td>

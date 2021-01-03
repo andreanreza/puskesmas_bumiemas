@@ -49,4 +49,16 @@ class Model_rekmed extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function rmObatById($id)
+    {
+        $this->db->select('tbl_rm_obat.*, tbl_rekam.*, tbl_obat.nama_obat');
+        $this->db->from('tbl_rm_obat');
+        $this->db->join('tbl_rekam', 'tbl_rm_obat.id_rm = tbl_rekam.id');
+        $this->db->join('tbl_obat', 'tbl_rm_obat.id_obat = tbl_obat.id');
+        $this->db->where('tbl_rekam.id', $id);
+
+        $query = $this->db->get();
+        return $query->row();
+    }
 }

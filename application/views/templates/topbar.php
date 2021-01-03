@@ -159,7 +159,7 @@
                       <div class="dropdown-content-body">
                           <ul>
                               <li>
-                                  <a href="<?= base_url('profile'); ?>"><i class="icon-user"></i> <span>Profile</span></a>
+                                  <a href="<?= base_url('profile/profile'); ?>"><i class="icon-user"></i> <span>Profile</span></a>
                               </li>
                               <hr class="my-2">
                               <li><a href="<?= base_url(); ?>auth/logout"><i class="icon-key"></i> <span>Logout</span></a></li>

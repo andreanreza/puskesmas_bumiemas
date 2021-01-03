@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2020 at 08:42 AM
+-- Generation Time: Jan 03, 2021 at 08:48 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -143,8 +143,8 @@ CREATE TABLE `menu_user` (
 INSERT INTO `menu_user` (`id`, `menu`) VALUES
 (1, 'Admin'),
 (2, 'pendaftaran'),
-(3, 'poliumum'),
-(4, 'polikia'),
+(3, 'poliUmum'),
+(4, 'poliKia'),
 (6, 'profile'),
 (7, 'menu');
 
@@ -169,10 +169,10 @@ CREATE TABLE `sub_menu` (
 
 INSERT INTO `sub_menu` (`id`, `menu_id`, `judul`, `url`, `icon`, `is_aktif`) VALUES
 (1, 7, 'Role', 'menu/role', 'fas fa-fw fa-universal-access mr-1', 1),
-(3, 2, 'Dashboard', 'pendaftaran/pendaftaran', 'fas fa-fw fa-user-md mr-fas fa-fw fa-tachometer-alt mr-1\r\n', 1),
+(3, 2, 'Dashboard', 'pendaftaran/pendaftaran', 'fas fa-fw fa-tachometer-alt mr-1\r\n', 1),
 (4, 7, 'Menu', 'menu', 'fab fa-fw fa-elementor mr-1', 1),
 (6, 1, 'Dashboard', 'admin/admin', 'fas fa-fw fa-tachometer-alt mr-1\r\n', 1),
-(8, 3, 'Dashboard', 'polikia/polikia', 'fas fa-fw fa-tachometer-alt mr-1\r\n', 1),
+(8, 3, 'Data pasien umum', 'poliumum/poliumum', 'fas fa-fw fa-diagnoses mr-1', 1),
 (9, 7, 'Sub Menu', 'menu/submenu', 'fas fa-fw fa-chevron-circle-down mr-1', 1),
 (11, 1, 'User', 'admin/admin/user', 'fas fa-fw fa-user-friends mr-1', 1),
 (12, 2, 'Data Pasien', 'pendaftaran/pendaftaran/viewpasien', 'fas fa-fw fa-cart-plus mr-1', 1),
@@ -180,7 +180,9 @@ INSERT INTO `sub_menu` (`id`, `menu_id`, `judul`, `url`, `icon`, `is_aktif`) VAL
 (15, 6, 'Profile', 'profile/profile', 'fas fa-fw fa-male mr-1', 1),
 (16, 6, 'Ganti Password', 'profile/profile/gantiPassword', 'fas fa-fw fa-key mr-1', 1),
 (21, 1, 'Diagnosa', 'admin/diagnosa', 'fab fa-fw fa-product-hunt mr-1', 1),
-(22, 2, 'Kunjungan', 'pendaftaran/kunjungan', 'fas fa-fw fa-cart-plus mr-1', 1);
+(22, 2, 'Kunjungan', 'pendaftaran/kunjungan', 'fas fa-fw fa-cart-plus mr-1', 1),
+(23, 1, 'Obat', 'admin/obat', 'fas fa-fw fa-cart-plus mr-1', 1),
+(24, 4, 'Data pasien kia', 'polikia/polikia', 'fas fa-fw fa-diagnoses mr-1', 1);
 
 -- --------------------------------------------------------
 
@@ -192,7 +194,7 @@ CREATE TABLE `tbl_kunjungan` (
   `id` int(11) NOT NULL,
   `id_pasien` int(11) NOT NULL,
   `keluhan` varchar(122) NOT NULL,
-  `id_poli` varchar(30) NOT NULL,
+  `id_poli` int(30) NOT NULL,
   `tgl_kun` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -201,9 +203,33 @@ CREATE TABLE `tbl_kunjungan` (
 --
 
 INSERT INTO `tbl_kunjungan` (`id`, `id_pasien`, `keluhan`, `id_poli`, `tgl_kun`) VALUES
-(1, 8, 'pusing pusing', '1', 22),
-(2, 8, 'dasda', '2', 0),
-(3, 21, 'gsdgsd', '1', 1608709403);
+(4, 26, 'pusing', 1, 1609491841),
+(5, 25, 'pusing', 2, 1609491867),
+(7, 27, 'sakit gigi', 1, 1609658022);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_obat`
+--
+
+CREATE TABLE `tbl_obat` (
+  `id` int(11) NOT NULL,
+  `kode_obat` varchar(122) NOT NULL,
+  `nama_obat` varchar(111) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_obat`
+--
+
+INSERT INTO `tbl_obat` (`id`, `kode_obat`, `nama_obat`) VALUES
+(2, '02', 'grantusif'),
+(3, '01', 'grafadon'),
+(4, '03', 'paracetamol'),
+(5, '04', 'ceterizin'),
+(6, '05', 'stm'),
+(7, '06', 'salbulin');
 
 -- --------------------------------------------------------
 
@@ -226,17 +252,9 @@ CREATE TABLE `tbl_pasien` (
 --
 
 INSERT INTO `tbl_pasien` (`id`, `nama`, `no_rm`, `alamat`, `jk`, `tgl_lahir`, `tgl_reg`) VALUES
-(8, 'reza', 'Rm-0001', 'dada', 'Laki-laki', '1999-12-15', 1608539632),
-(12, 'wef', 'Rm-0002', 'sdqw', 'Laki-laki', '2013-02-21', 1608549592),
-(13, 'wef', 'Rm-0003', 'dsad', 'Perempuan', '2020-12-02', 1608554608),
-(14, 'dasd', 'Rm-0004', 'sdas', 'Perempuan', '2015-05-21', 1608554626),
-(15, 'rerwe', 'Rm-0005', 'sadwq', 'Laki-laki', '2020-12-17', 1608554640),
-(16, 'dsd', 'Rm-0006', 'sdas', 'Laki-laki', '2020-12-16', 1608554653),
-(17, 'dasd', 'Rm-0007', 'sda', 'Laki-laki', '2020-12-30', 1608554665),
-(18, 'dsadas', 'Rm-0008', 'dsaasd', 'Laki-laki', '2020-12-18', 1608554677),
-(19, 'sdasd', 'Rm-0009', 'dsas', 'Laki-laki', '2020-12-25', 1608554694),
-(20, 'sdasd', 'Rm-0010', 'sdasd', 'Laki-laki', '2020-12-17', 1608554708),
-(21, 'sdada', 'Rm-0011', 'dad', 'Laki-laki', '2020-12-24', 1608554719);
+(25, 'suprap', 'Rm0001', 'selorejo', 'Laki-laki', '1998-01-21', 1609491632),
+(26, 'indun', 'Rm0002', 'bumiemas', 'Perempuan', '1988-08-11', 1609491667),
+(27, 'khoirul', 'Rm0003', 'marga', 'Laki-laki', '1999-12-03', 1609658002);
 
 -- --------------------------------------------------------
 
@@ -256,6 +274,56 @@ CREATE TABLE `tbl_poli` (
 INSERT INTO `tbl_poli` (`id`, `poli`) VALUES
 (1, 'poli umum'),
 (2, 'poli kia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_rekam`
+--
+
+CREATE TABLE `tbl_rekam` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(122) NOT NULL,
+  `no_rm` varchar(111) NOT NULL,
+  `alamat` varchar(111) NOT NULL,
+  `jenis_kelamin` varchar(30) NOT NULL,
+  `keluhan` varchar(10) NOT NULL,
+  `tgl_rekam` int(111) NOT NULL,
+  `id_poli` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_rekam`
+--
+
+INSERT INTO `tbl_rekam` (`id`, `nama`, `no_rm`, `alamat`, `jenis_kelamin`, `keluhan`, `tgl_rekam`, `id_poli`) VALUES
+(8, 'suprap', 'Rm0001', 'selorejo', 'Laki-laki', 'pusing', 1609572770, 2),
+(13, 'indun', 'Rm0002', 'bumiemas', 'Perempuan', 'pusing', 1609572996, 1),
+(16, 'khoirul', 'Rm0003', 'marga', 'Laki-laki', 'sakit gigi', 1609658870, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_rm_obat`
+--
+
+CREATE TABLE `tbl_rm_obat` (
+  `id` int(11) NOT NULL,
+  `id_rm` int(11) NOT NULL,
+  `id_obat` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_rm_obat`
+--
+
+INSERT INTO `tbl_rm_obat` (`id`, `id_rm`, `id_obat`) VALUES
+(14, 8, 3),
+(15, 13, 2),
+(16, 13, 3),
+(25, 16, 4),
+(26, 16, 5),
+(27, 16, 6);
 
 -- --------------------------------------------------------
 
@@ -300,10 +368,10 @@ CREATE TABLE `user_role` (
 --
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
-(1, 'admin'),
-(2, 'pendaftaran'),
-(3, 'poli'),
-(4, 'polikia');
+(1, 'Superadmin'),
+(2, 'Petugas pendaftaran'),
+(3, 'Petugas Poli Umum'),
+(4, 'Petugas Poli Kia');
 
 -- --------------------------------------------------------
 
@@ -381,6 +449,14 @@ ALTER TABLE `sub_menu`
 -- Indexes for table `tbl_kunjungan`
 --
 ALTER TABLE `tbl_kunjungan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pasien` (`id_pasien`),
+  ADD KEY `id_poli` (`id_poli`);
+
+--
+-- Indexes for table `tbl_obat`
+--
+ALTER TABLE `tbl_obat`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -394,6 +470,21 @@ ALTER TABLE `tbl_pasien`
 --
 ALTER TABLE `tbl_poli`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_rekam`
+--
+ALTER TABLE `tbl_rekam`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_poli` (`id_poli`);
+
+--
+-- Indexes for table `tbl_rm_obat`
+--
+ALTER TABLE `tbl_rm_obat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tbl_rm_obat_1` (`id_rm`),
+  ADD KEY `id_obat` (`id_obat`);
 
 --
 -- Indexes for table `user`
@@ -451,25 +542,43 @@ ALTER TABLE `menu_user`
 -- AUTO_INCREMENT for table `sub_menu`
 --
 ALTER TABLE `sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tbl_kunjungan`
 --
 ALTER TABLE `tbl_kunjungan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tbl_obat`
+--
+ALTER TABLE `tbl_obat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_pasien`
 --
 ALTER TABLE `tbl_pasien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tbl_poli`
 --
 ALTER TABLE `tbl_poli`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_rekam`
+--
+ALTER TABLE `tbl_rekam`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `tbl_rm_obat`
+--
+ALTER TABLE `tbl_rm_obat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -488,6 +597,30 @@ ALTER TABLE `user_role`
 --
 ALTER TABLE `user_token`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tbl_kunjungan`
+--
+ALTER TABLE `tbl_kunjungan`
+  ADD CONSTRAINT `tbl_kunjungan_ibfk_1` FOREIGN KEY (`id_pasien`) REFERENCES `tbl_pasien` (`id`),
+  ADD CONSTRAINT `tbl_kunjungan_ibfk_2` FOREIGN KEY (`id_poli`) REFERENCES `tbl_poli` (`id`);
+
+--
+-- Constraints for table `tbl_rekam`
+--
+ALTER TABLE `tbl_rekam`
+  ADD CONSTRAINT `tbl_rekam_ibfk_1` FOREIGN KEY (`id_poli`) REFERENCES `tbl_poli` (`id`);
+
+--
+-- Constraints for table `tbl_rm_obat`
+--
+ALTER TABLE `tbl_rm_obat`
+  ADD CONSTRAINT `tbl_rm_obat_1` FOREIGN KEY (`id_rm`) REFERENCES `tbl_rekam` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_rm_obat_ibfk_1` FOREIGN KEY (`id_obat`) REFERENCES `tbl_obat` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
