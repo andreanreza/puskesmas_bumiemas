@@ -1,11 +1,9 @@
 <div class="content-body">
-
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <h4><small><?= $judul; ?></small></h4>
         </div>
     </div>
-
 
     <div class="container-fluid">
         <div class="row">
@@ -17,8 +15,6 @@
                             <?= $this->session->flashdata('pesan'); ?>
                         </div>
 
-
-
                         <div class="table-responsive ">
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
@@ -29,7 +25,7 @@
                                         <th>Jenis Kelamin</th>
                                         <th>Keluhan</th>
                                         <th>tgl rekmed</th>
-                                        <th>obat</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -41,29 +37,17 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= $rm->nama; ?></td>
                                             <td><?= $rm->no_rm; ?></td>
-
                                             <td><?= $rm->jenis_kelamin; ?></td>
                                             <td><?= $rm->keluhan; ?></td>
                                             <td><?= date('d F Y', $rm->tgl_rekam); ?></td>
                                             <td>
-                                                <?php
-                                                $id_rm = $rm->id;
-                                                $this->db->select('tbl_rm_obat.*, tbl_rekam.*, tbl_obat.nama_obat');
-                                                $this->db->from('tbl_rm_obat');
-                                                $this->db->join('tbl_rekam', 'tbl_rm_obat.id_rm = tbl_rekam.id');
-                                                $this->db->join('tbl_obat', 'tbl_rm_obat.id_obat = tbl_obat.id');
-                                                $this->db->where('tbl_rm_obat.id_rm', $id_rm);
-                                                $query = $this->db->get()->result();
-
-                                                ?>
-                                                <?php foreach ($query as $ro) : ?>
-                                                    <?= $ro->nama_obat; ?><br>
-                                                <?php endforeach; ?>
+                                                <?php if ($rm->status == 0) : ?>
+                                                    belum diperiksa
+                                                <?php endif; ?>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('poliumum/poliumum/cetakpdf/') . $rm->id; ?>" class="badge badge-secondary">Cetak</a>
-                                                <a href="<?= base_url('poliumum/poliumum/editrekmed/') . $rm->id; ?>" class="badge badge-success">periksa</a>
-                                                <a href="<?= base_url('poliumum/poliumum/hapusrekmed/') . $rm->id; ?>" class="badge badge-danger" onclick="return confirm('yakin ?'); ">Hapus</a>
+                                                <a href="<?= base_url('poliumum/poliumum/editrekmed/') . $rm->id; ?>" <i class="fas fa-receipt text-primary"></i></a>
+                                                <a href="<?= base_url('poliumum/poliumum/hapusrekmed/') . $rm->id; ?>" <i class="fas fa-trash text-danger ml-2" onclick="return confirm('yakin ?'); "></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

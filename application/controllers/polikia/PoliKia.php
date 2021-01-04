@@ -38,12 +38,26 @@ class PoliKia extends CI_Controller
             'obat'        => $this->db->get('tbl_obat')->result()
 
         ];
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('poli/periksa-poli-kia', $data);
+        $this->load->view('templates/footer');
+    }
 
+    public function kiaTerperiksa()
+    {
+        $data = [
+            'judul'     => 'Poli kia',
+            'user'      => $this->Model_auth->userData(),
+            'rekmed'    => $this->Model_rekmed->viewPolikiaTerperiksa(),
+            'rmobat'    => $this->db->get('tbl_rm_obat')->result()
+        ];
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar');
-        $this->load->view('poli/periksa', $data);
+        $this->load->view('poli/polikia-sudahperiksa', $data);
         $this->load->view('templates/footer');
     }
 
@@ -61,10 +75,29 @@ class PoliKia extends CI_Controller
             $this->db->insert('tbl_rm_obat', $data);
         }
 
+        $this->db->set('status', 1);
         $this->db->set('tgl_rekam', time());
         $this->db->where('id', $idRm);
         $this->db->update('tbl_rekam');
-        redirect('polikia/polikia');
+        redirect('polikia/polikia/kiaterperiksa');
+    }
+
+
+
+    public function editrmobat($id)
+    {
+        $data = [
+            'judul'       => 'Periksa',
+            'user'        => $this->Model_auth->userData(),
+            'rekmedId'    => $this->Model_rekmed->rmObatById($id),
+            'jk'          => ['Laki-laki', 'Perempuan'],
+            'obat'        => $this->db->get('tbl_obat')->result()
+        ];
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('poli/edit-rm-obat-kia', $data);
+        $this->load->view('templates/footer');
     }
 
     public function hapusrekmed($id)

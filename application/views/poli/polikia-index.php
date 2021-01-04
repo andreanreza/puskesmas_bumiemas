@@ -26,11 +26,10 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>No Rm</th>
-
                                         <th>Jenis Kelamin</th>
                                         <th>Keluhan</th>
                                         <th>tgl rekmed</th>
-                                        <th>obat</th>
+                                        <th>status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -47,25 +46,13 @@
                                             <td><?= $rm->keluhan; ?></td>
                                             <td><?= date('d F Y', $rm->tgl_rekam); ?></td>
                                             <td>
-                                                <?php
-                                                $id_rm = $rm->id;
-                                                $this->db->select('tbl_rm_obat.*, tbl_rekam.*, tbl_obat.nama_obat');
-                                                $this->db->from('tbl_rm_obat');
-                                                $this->db->join('tbl_rekam', 'tbl_rm_obat.id_rm = tbl_rekam.id');
-                                                $this->db->join('tbl_obat', 'tbl_rm_obat.id_obat = tbl_obat.id');
-                                                $this->db->where('tbl_rm_obat.id_rm', $id_rm);
-                                                $query = $this->db->get()->result();
-
-
-                                                ?>
-                                                <?php foreach ($query as $ro) : ?>
-                                                    <?= $ro->nama_obat; ?><br>
-                                                <?php endforeach; ?>
+                                                <?php if ($rm->status == 0) : ?>
+                                                    belum diperiksa
+                                                <?php endif; ?>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('poliumum/poliumum/cetakpdf/') . $rm->id; ?>" class="badge badge-secondary">cetak</a>
-                                                <a href="<?= base_url('polikia/polikia/editrekmed/') . $rm->id; ?>" class="badge badge-success">periksa</a>
-                                                <a href="<?= base_url('polikia/polikia/hapusrekmed/') . $rm->id; ?>" class="badge badge-danger" onclick="return confirm('yakin ?'); ">Hapus</a>
+                                                <a href="<?= base_url('polikia/polikia/editrekmed/') . $rm->id; ?>" <i class="fas fa-receipt text-primary"></i></a>
+                                                <a href="<?= base_url('polikia/polikia/hapusrekmed/') . $rm->id; ?>" <i class="fas fa-trash text-danger ml-2" onclick="return confirm('yakin ?'); "></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

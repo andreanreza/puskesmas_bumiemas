@@ -105,6 +105,6 @@ class PoliUmum extends CI_Controller
 
         $data['rekmed'] = $this->Model_rekmed->rmObatById($id);
 
-        $this->load->view('poli/cetak-laporan-id', $data);
+        $this->load->view('poli/sampel', $data);
     }
 }

@@ -5,37 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+   
 
     <title>rekam medis pasien</title>
   </head><body>
-  <h3 style="text-align: center;">Rekam medis pasien</h3><hr>
+  <!-- <img src="<?= base_url(); ?>assets/logo/puskes.jpg" style="position: absolute; width: 60px; height:auto"> -->
+    <table style="width: 100%;">
+        <tr>
+            <td align="center">
+            <span style="line-height: 1,6; font-weight:bold;">
+            UPTD Puskesmas Bumiemas 
+            <br>Lampung Timur
+            </span>
+            </td>
+        </tr>
+    </table>
+    
+    <hr>
 
-  <table class="table table-striped table-bordered zero-configuration">
-                                
-                                    <tr>
-                                      
-                                        <th>Nama</th>
-                                        <th>No Rm</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Keluhan</th>
-                                        <th>tgl rekmed</th>
-                                        <th>obat</th>
-                                       
-                                    </tr>
-                               
-                                   
-                                  
-                                        <tr>
-                                            
-                                            <td><?= $rekmed->nama; ?></td>
-                                            <td><?= $rekmed->no_rm; ?></td>
+    <h4 align="center">Rekam Medis pasien
+    <br><?= $rekmed->no_rm; ?>
+    </h4>
 
-                                            <td><?= $rekmed->jenis_kelamin; ?></td>
-                                            <td><?= $rekmed->keluhan; ?></td>
-                                            <td><?= date('d F Y', $rekmed->tgl_rekam); ?></td>
-                                            <td>
-                                                <?php
+    
+        <table  cellspacing="0" cellpadding="10" width="500">
+            <tr>
+                <td witdh="150">Nama</td>
+                <td width="350"> <?= $rekmed->nama; ?></td>
+            </tr>
+           
+            <tr padding-top="2px">
+                <td witdh="150">Alamat</td>
+                <td width="350"> <?= $rekmed->alamat; ?></td>
+            </tr>
+            <tr>
+                <td witdh="150">Jenis Kelamin</td>
+                <td width="350"> <?= $rekmed->jenis_kelamin; ?></td>
+            </tr>
+            <tr>
+                <td witdh="150">Keluhan</td>
+                <td width="350"> <?= $rekmed->keluhan; ?></td>
+            </tr>
+            <tr>
+                <td witdh="150">Tanggal Rekmed</td>
+                <td width="350"><?= date('d F Y', $rekmed->tgl_rekam); ?></td>
+            </tr>
+            <tr>
+                <td witdh="150">Obat</td>
+                <td width="350">
+                <?php
                                                 $id_rm = $rekmed->id;
                                                 $this->db->select('tbl_rm_obat.*, tbl_rekam.*, tbl_obat.nama_obat');
                                                 $this->db->from('tbl_rm_obat');
@@ -46,18 +64,19 @@
 
                                                 ?>
                                                 <?php foreach ($query as $ro) : ?>
-                                                    <?= $ro->nama_obat; ?><br>
+                                                   <?= $ro->nama_obat; ?>.
                                                 <?php endforeach; ?>
-                                            </td>
-                                            
-                                        </tr>
-                                   
-                               
-                            </table>
+                </td>
+            </tr>  
+        </table>
+
+       
 
    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  
+
+   
+   
 
     
   </body></html>

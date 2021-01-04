@@ -9,29 +9,56 @@
 
     <title>rekam medis pasien</title>
   </head><body>
-  <div class="container">
-      <h2>rekam medis pasien</h2>
+  <img src="<?= base_url(); ?>assets/logo/puskes.png" style="position: absolute; width: 60px; height:auto">
+  <h3 style="text-align: center;">Rekam medis pasien</h3><hr>
 
-<div class="row">
-    <div class="col-md-2">
-        <h4>nama</h4>
-    </div>
-    <div class="col-md-5">
-        <h4><?= $rekmed->nama; ?></h4>
-    </div>
-</div>
+  <table class="table table-striped table-bordered zero-configuration">
+                                
+                                    <tr>
+                                      
+                                        <th>Nama</th>
+                                        <th>No Rm</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Keluhan</th>
+                                        <th>tgl rekmed</th>
+                                        <th>obat</th>
+                                       
+                                    </tr>
+                               
+                                   
+                                  
+                                        <tr>
+                                            
+                                            <td><?= $rekmed->nama; ?></td>
+                                            <td><?= $rekmed->no_rm; ?></td>
 
-  </div>
+                                            <td><?= $rekmed->jenis_kelamin; ?></td>
+                                            <td><?= $rekmed->keluhan; ?></td>
+                                            <td><?= date('d F Y', $rekmed->tgl_rekam); ?></td>
+                                            <td>
+                                                <?php
+                                                $id_rm = $rekmed->id;
+                                                $this->db->select('tbl_rm_obat.*, tbl_rekam.*, tbl_obat.nama_obat');
+                                                $this->db->from('tbl_rm_obat');
+                                                $this->db->join('tbl_rekam', 'tbl_rm_obat.id_rm = tbl_rekam.id');
+                                                $this->db->join('tbl_obat', 'tbl_rm_obat.id_obat = tbl_obat.id');
+                                                $this->db->where('tbl_rm_obat.id_rm', $id_rm);
+                                                $query = $this->db->get()->result();
 
-    <!-- Optional JavaScript; choose one of the two! -->
+                                                ?>
+                                                <?php foreach ($query as $ro) : ?>
+                                                    <?= $ro->nama_obat; ?><br>
+                                                <?php endforeach; ?>
+                                            </td>
+                                            
+                                        </tr>
+                                   
+                               
+                            </table>
 
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+   
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-    -->
+    
   </body></html>
