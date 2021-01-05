@@ -56,8 +56,8 @@
                                                 <?php endforeach; ?>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('polikia/polikia/cetakpdf/') . $rm->id; ?>" <i class="fas fa-file-pdf text-success"></i></a>
-                                                <a href="<?= base_url('polikia/polikia/hapusrekmed/') . $rm->id; ?>" <i class="fas fa-trash text-danger ml-2" onclick="return confirm('yakin ?'); "></i></a>
+                                                <a href="<?= base_url('polikia/polikia/cetakpdf/') . $rm->id; ?>" class="btn btn-success"><i class="fas fa-file-pdf mr-2"></i>Cetak</a>
+                                                <a href="<?= base_url('polikia/polikia/hapusrekmed/') . $rm->id; ?>" class="btn btn-danger" onclick="return confirm('yakin ?'); ">hapus</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
+            <!-- <div class="col-lg-3 col-sm-6">
                 <div class="card gradient-3">
                     <div class="card-body">
                         <h3 class="card-title text-white">New Customers</h3>
@@ -51,7 +51,7 @@
                         <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
     </div>

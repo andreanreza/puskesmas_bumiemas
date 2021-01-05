@@ -27,6 +27,23 @@ class PoliKia extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function dashboard()
+    {
+
+        $data = [
+            'judul'        => 'dashborad',
+            'user'         => $this->Model_auth->userData(),
+            'terperiksa'   => $this->Model_rekmed->poliKiaTerperiksa(),
+            'belumperiksa' => $this->Model_rekmed->poliKiaBelumPeriksa()
+        ];
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('poli/dashboard-poliumum', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function editrekmed($id)
     {
 

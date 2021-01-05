@@ -1,25 +1,26 @@
 <div class="content-body">
 
     <div class="container-fluid mt-3">
-        <!-- <div class="row">
-            <div class="col-lg-3 col-sm-6">
+        <div class="row">
+            <div class="col-lg-4">
                 <div class="card gradient-1">
                     <div class="card-body">
-                        <h3 class="card-title text-white">Products Sold</h3>
+                        <h3 class="card-title text-white">Data Pasien</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white">4565</h2>
-                            <p class="text-white mb-0">Jan - March 2019</p>
+                            <h2 class="text-white"><?= $countDataPasien['jumlah']; ?></h2>
+                            <p class="text-white mb-0"><?= date('d F'); ?></p>
+                            <p class="text-white mb-0"><?= date('Y'); ?></p>
                         </div>
                         <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4">
                 <div class="card gradient-2">
                     <div class="card-body">
-                        <h3 class="card-title text-white">Net Profit</h3>
+                        <h3 class="card-title text-white">Kunjungan Pasien</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white">$ 8541</h2>
+                            <h2 class="text-white"><?= $countDataKunjungan['jumlahKunjungan']; ?></h2>
                             <p class="text-white mb-0"><?= date('d F'); ?></p>
                             <p class="text-white mb-0"><?= date('Y'); ?></p>
                         </div>
@@ -27,36 +28,69 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
                 <div class="card gradient-3">
                     <div class="card-body">
-                        <h3 class="card-title text-white">New Customers</h3>
+                        <h3 class="card-title text-white">Poliumum belum diperiksa</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white">4565</h2>
-                            <p class="text-white mb-0">Jan - March 2019</p>
+                            <h2 class="text-white"><?= $umumterperiksa['jumlah']; ?></h2>
+                            <p class="text-white mb-0"><?= date('d F'); ?></p>
+                            <p class="text-white mb-0"><?= date('Y'); ?></p>
                         </div>
                         <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="card gradient-4">
+            <div class="col-lg-4">
+                <div class="card gradient-3">
                     <div class="card-body">
-                        <h3 class="card-title text-white">Customer Satisfaction</h3>
+                        <h3 class="card-title text-white">Poliumum Belum diperiksa</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white">99%</h2>
-                            <p class="text-white mb-0">Jan - March 2019</p>
+                            <h2 class="text-white"><?= $umumbelumperiksa['jumlah']; ?></h2>
+                            <p class="text-white mb-0"><?= date('d F'); ?></p>
+                            <p class="text-white mb-0"><?= date('Y'); ?></p>
                         </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
+                        <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card gradient-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-white">Polikia belum diperiksa</h3>
+                        <div class="d-inline-block">
+                            <h2 class="text-white"><?= $belumperiksa['jumlah']; ?></h2>
+                            <p class="text-white mb-0"><?= date('d F'); ?></p>
+                            <p class="text-white mb-0"><?= date('Y'); ?></p>
+                        </div>
+                        <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card gradient-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-white">Polikia Belum diperiksa</h3>
+                        <div class="d-inline-block">
+                            <h2 class="text-white"><?= $terperiksa['jumlah']; ?></h2>
+                            <p class="text-white mb-0"><?= date('d F'); ?></p>
+                            <p class="text-white mb-0"><?= date('Y'); ?></p>
+                        </div>
+                        <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-       
 
 
-       
+
+
+
 
         <div class="row">
             <?php foreach ($us as $u) : ?>
@@ -90,7 +124,7 @@
             <?php endforeach; ?>
         </div>
 
-      
-                                            </div>
+
+    </div>
     <!-- #/ container -->
 </div>

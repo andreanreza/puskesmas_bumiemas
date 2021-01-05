@@ -16,9 +16,9 @@ class PoliUmum extends CI_Controller
             'judul'     => 'Poli umum',
             'user'      => $this->Model_auth->userData(),
             'rekmed'    => $this->Model_rekmed->viewPoliUmum(),
-            'rmobat'    => $this->db->get('tbl_rm_obat')->result()
-        ];
+            'rmobat'    => $this->db->get('tbl_rm_obat')->result(),
 
+        ];
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
@@ -26,6 +26,40 @@ class PoliUmum extends CI_Controller
         $this->load->view('poli/poliumum-index', $data);
         $this->load->view('templates/footer');
     }
+
+    public function dashboard()
+    {
+
+        $data = [
+            'judul'        => 'dashborad',
+            'user'         => $this->Model_auth->userData(),
+            'terperiksa'   => $this->Model_rekmed->poliUmumTerperiksa(),
+            'belumperiksa' => $this->Model_rekmed->poliUmumBelumPeriksa()
+        ];
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('poli/dashboard-poliumum', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function Terperiksa()
+    {
+        $data = [
+            'judul'     => 'Poli kia',
+            'user'      => $this->Model_auth->userData(),
+            'rekmed'    => $this->Model_rekmed->viewPoliUmumTerperiksa(),
+            'rmobat'    => $this->db->get('tbl_rm_obat')->result()
+        ];
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('poli/poliumum-sudahperiksa', $data);
+        $this->load->view('templates/footer');
+    }
+
 
     public function editrekmed($id)
     {
@@ -39,11 +73,10 @@ class PoliUmum extends CI_Controller
 
         ];
 
-
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar');
-        $this->load->view('poli/periksa', $data);
+        $this->load->view('poli/periksa-poli-umum', $data);
         $this->load->view('templates/footer');
     }
 
@@ -64,10 +97,11 @@ class PoliUmum extends CI_Controller
         // $data1 = [
         //     'tgl_rekam' => time()
         // ];
+        $this->db->set('status', 1);
         $this->db->set('tgl_rekam', time());
         $this->db->where('id', $idRm);
         $this->db->update('tbl_rekam');
-        redirect('poliumum/poliumum');
+        redirect('poliumum/poliumum/terperiksa');
     }
 
     public function hapusrekmed($id)
@@ -99,12 +133,5 @@ class PoliUmum extends CI_Controller
         $this->dompdf->stream("laporan_rekam_medis.pdf", [
             'attachment' => 0
         ]);
-    }
-
-    public function sampel($id){
-
-        $data['rekmed'] = $this->Model_rekmed->rmObatById($id);
-
-        $this->load->view('poli/sampel', $data);
     }
 }

@@ -36,16 +36,16 @@ function cek_akses($role_id, $menu_id)
         return "checked='checked'";
     }
 
-    function cek_proses()
-    {
-        $ci = get_instance();
+    // function cek_proses()
+    // {
+    //     $ci = get_instance();
 
-        $ci->db->where('proses', 1);
+    //     $ci->db->where('proses', 1);
 
-        $result = $ci->db->get('tbl_kunjungan');
+    //     $result = $ci->db->get('tbl_kunjungan');
 
-        if ($result->num_rows() > 0) {
-            return "checked='checked'";
-        }
-    }
+    //     if ($result->num_rows() > 0) {
+    //         return "checked='checked'";
+    //     }
+    // }
 }

@@ -15,7 +15,13 @@ class Admin extends CI_Controller
         $data = [
             'judul'   => 'Dashboard',
             'user'    => $this->Model_auth->userData(),
-            'us'      => $this->Model_menu->getUser()
+            'us'      => $this->Model_menu->getUser(),
+            'countDataPasien'    => $this->Model_pendaftaran->countDataPasien(),
+            'countDataKunjungan' => $this->Model_pendaftaran->countDataKunjungan(),
+            'umumterperiksa'   => $this->Model_rekmed->poliUmumTerperiksa(),
+            'umumbelumperiksa' => $this->Model_rekmed->poliUmumBelumPeriksa(),
+            'terperiksa'   => $this->Model_rekmed->poliKiaTerperiksa(),
+            'belumperiksa' => $this->Model_rekmed->poliKiaBelumPeriksa()
         ];
 
         $this->load->view('templates/header', $data);

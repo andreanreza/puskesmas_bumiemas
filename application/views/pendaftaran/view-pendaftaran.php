@@ -45,7 +45,7 @@
                                             <td><?= $p->jk; ?></td>
                                             <!-- <td><?= $p->tgl_lahir; ?></td> -->
                                             <td><?= date('d F Y', $p->tgl_reg); ?></td>
-                                            <td><?= $p->usia; ?></td>
+                                            <td><?= $p->usia . ' ' . 'thun.'; ?></td>
                                             <td>
                                                 <a href="<?= base_url('pendaftaran/pendaftaran/editpasien/') . $p->id; ?>" class="badge badge-secondary">Edit</a>
                                                 <a href="<?= base_url('pendaftaran/pendaftaran/hapuspasien/') . $p->id; ?>" class="badge badge-danger" onclick="return confirm('yakin ?'); ">Hapus</a>

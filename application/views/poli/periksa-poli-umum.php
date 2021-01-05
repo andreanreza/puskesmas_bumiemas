@@ -34,7 +34,7 @@
                                     <?php endforeach; ?>
                                 </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary mt-2">Simpan</button>
                         </form>
                     </div>
                 </div>

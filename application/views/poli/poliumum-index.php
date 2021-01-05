@@ -46,8 +46,8 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('poliumum/poliumum/editrekmed/') . $rm->id; ?>" <i class="fas fa-receipt text-primary"></i></a>
-                                                <a href="<?= base_url('poliumum/poliumum/hapusrekmed/') . $rm->id; ?>" <i class="fas fa-trash text-danger ml-2" onclick="return confirm('yakin ?'); "></a>
+                                                <a href="<?= base_url('poliumum/poliumum/editrekmed/') . $rm->id; ?>" class="btn btn-primary">Cek</a>
+                                                <a href="<?= base_url('poliumum/poliumum/hapusrekmed/') . $rm->id; ?>" class="btn btn-danger" onclick="return confirm('yakin ?'); ">hapus</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
