@@ -55,7 +55,7 @@ class Profile extends CI_Controller
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
                     Password baru sama dengan password lama
                   </div>');
-                    redirect('profile/gantiPassword');
+                    redirect('profile/profile/gantiPassword');
                 } else {
                     // password lolos
                     $password_hash = password_hash($password_baru, PASSWORD_DEFAULT);
@@ -66,7 +66,7 @@ class Profile extends CI_Controller
                     $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
                     Password berhasil diganti
                   </div>');
-                    redirect('profile/gantiPassword');
+                    redirect('profile/profile/gantiPassword');
                 }
             }
         }

@@ -29,7 +29,6 @@
                                         <th>Jenis Kelamin</th>
                                         <th>Keluhan</th>
                                         <th>tgl kunjungan</th>
-
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -47,7 +46,7 @@
                                             <td><?= date('d F Y', $k->tgl_kun); ?></td>
                                             <td>
                                                 <a href="<?= base_url('pendaftaran/kunjungan/detailkunjungan/') . $k->id; ?>" class="badge badge-secondary">Detail</a>
-                                                <a href="<?= base_url('pendaftaran/kunjungan/tambahkunjunganrekam/') . $k->id; ?>" class="badge badge-success">proses</a>
+                                                <a href="<?= base_url('pendaftaran/kunjungan/tambahkunjunganrekam/') . $k->id; ?>" class="badge badge-success tambah">proses</a>
                                                 <a href="<?= base_url('pendaftaran/kunjungan/hapuskunjungan/') . $k->id; ?>" class="badge badge-danger" onclick="return confirm('yakin ?'); ">Hapus</a>
                                             </td>
                                         </tr>

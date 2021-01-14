@@ -156,7 +156,7 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
             berhasil menambahkan user
           </div>');
-            redirect('admin/user');
+            redirect('admin/admin/user');
         }
     }
 
@@ -256,8 +256,6 @@ class Auth extends CI_Controller
 
     public function lupaPassword()
     {
-
-
         $data = [
             'title' => 'Lupa Password'
         ];
