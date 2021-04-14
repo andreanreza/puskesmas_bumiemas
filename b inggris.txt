@@ -1,0 +1,4 @@
+ss	: Andrea is a pilot.
+cs	: 
+ss	: muhammad swam in the swimming pool
+cs	: muhammad swam in the swimming pool, and then ate lunch

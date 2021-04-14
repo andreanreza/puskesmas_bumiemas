@@ -94,9 +94,6 @@ class PoliUmum extends CI_Controller
             $this->db->insert('tbl_rm_obat', $data);
         }
 
-        // $data1 = [
-        //     'tgl_rekam' => time()
-        // ];
         $this->db->set('status', 1);
         $this->db->set('tgl_rekam', time());
         $this->db->where('id', $idRm);
